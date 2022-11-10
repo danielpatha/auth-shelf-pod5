@@ -52,21 +52,24 @@ router.post('/',rejectUnauthenticated , (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-router.delete('/:id',rejectUnauthenticated, (req, res) => {
+router.delete('/',rejectUnauthenticated, (req, res) => {
   // endpoint functionality
   const sqlText = `
   DELETE
   FROM "item"
   WHERE "id" = $1;
   `;
-
-  pool.query(sqlText,[req.params.id])
-  .then((result) =>{
-    res.sendStatus(200)
-  })
-  .catch((error) =>{
-    console.log('error deleting item',error)
-  })
+  console.log('req.body:', req.body);
+  console.log('userid', req.user.id)
+// if( req.user.id === req.body.user_id){
+//   pool.query(sqlText,[req.params.id])
+//   .then((result) =>{
+//     res.sendStatus(200)
+//   })
+//   .catch((error) =>{
+//     console.log('error deleting item',error)
+//   })}
+//   else{res.sendStatus(403)}
 });
 
 /**

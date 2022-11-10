@@ -49,7 +49,9 @@ function* deleteItem(action){
     console.log('in deleteItemSaga with the item id of:', action.payload);
     try{
         //send item id via params to the server for the delete route
-        yield axios.delete(`/api/shelf/${action.payload}`);
+        yield axios.delete(`/api/shelf/${action.payload}`, {
+            data: action.payload
+        });
 
         //reset redux and rerender after store is updated
         yield put({
