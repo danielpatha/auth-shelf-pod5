@@ -15,7 +15,7 @@ router.get('/',rejectUnauthenticated ,(req, res) => {
 
    pool.query(sqlText)
    .then((result) =>{
-    console.log('result is:',result.rows)
+    // console.log('result is:',result.rows)
     res.send(result.rows)
    })
    .catch((error) =>{
@@ -29,7 +29,7 @@ router.get('/',rejectUnauthenticated ,(req, res) => {
  */
 router.post('/',rejectUnauthenticated , (req, res) => {
   // endpoint functionality
-  console.log("req.body is:",req.body)
+//   console.log("req.body is:",req.body)
   const sqlText = `
   INSERT INTO "item"
   ("description","image_url","user_id")
@@ -40,7 +40,7 @@ router.post('/',rejectUnauthenticated , (req, res) => {
   pool.query(sqlText,[req.body.description,req.body.image_url,req.user.id])
 
   .then((result) =>{
-    console.log('result.rows is:', result.rows)
+    // console.log('result.rows is:', result.rows)
     res.sendStatus(201)
   })
   .catch((error) =>{
@@ -52,7 +52,7 @@ router.post('/',rejectUnauthenticated , (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-router.delete('/',rejectUnauthenticated, (req, res) => {
+router.delete('/:id',rejectUnauthenticated, (req, res) => {
   // endpoint functionality
   const sqlText = `
   DELETE
@@ -61,15 +61,15 @@ router.delete('/',rejectUnauthenticated, (req, res) => {
   `;
   console.log('req.body:', req.body);
   console.log('userid', req.user.id)
-// if( req.user.id === req.body.user_id){
-//   pool.query(sqlText,[req.params.id])
-//   .then((result) =>{
-//     res.sendStatus(200)
-//   })
-//   .catch((error) =>{
-//     console.log('error deleting item',error)
-//   })}
-//   else{res.sendStatus(403)}
+if( req.user.id === req.body.user_id){
+  pool.query(sqlText,[req.params.id])
+  .then((result) =>{
+    res.sendStatus(200)
+  })
+  .catch((error) =>{
+    console.log('error deleting item',error)
+  })}
+  else{res.sendStatus(403)}
 });
 
 /**
