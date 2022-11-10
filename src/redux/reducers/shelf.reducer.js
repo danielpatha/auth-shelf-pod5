@@ -2,7 +2,7 @@
 
 const shelfReducer = (state = [], action) => {
     switch(action.type) {
-        case 'SET_LIST':
+        case 'SET_SHELF':
             return action.payload;
     }
 
