@@ -1,15 +1,23 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 
 
-function ShelfItem(){
+function ShelfItem({item}){
+
+    const deleteItem = (evt) => {
+console.log(evt.target.name)
+    }
+
+
     return (
-        <>
-        <ul>
-            <li>  </li> <button> Delete </button>
-        </ul>
-        </>
+        
+            <li key = {item.id}> 
+            <p> {item.description}</p> 
+            <img src = {item.image_url}/> 
+
+            <button name = {item.id} onClick = {deleteItem}> Delete </button>
+            </li>   
+      
     )
 }
 

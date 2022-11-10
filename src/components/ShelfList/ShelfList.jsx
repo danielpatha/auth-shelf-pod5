@@ -1,21 +1,31 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import ShelfItem from '../ShelfItem/ShelfItem';
 
 function ShelfList(){
-   const dispatch = useDispatch();
-    const shelf = useSelector(store => store.shelfReducer);
+const shelf = useSelector(store => store.shelfReducer);
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_SHELF' });
-    }, []);
+
     return (
-        <>
+        <main>
         <h1>Shelf List</h1>
 
-        <ShelfItem/>
+      <section>
+        <ul>
+        {shelf.map(item => {
+            return(
+                <ShelfItem item = {item}/>
+            )
 
-        </>
+        })}
+        </ul>
+
+      </section>
+
+        
+
+       
+        </main>
     )
 }
 
