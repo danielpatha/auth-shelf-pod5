@@ -6,7 +6,7 @@ const shelfReducer = (state = [], action) => {
             return action.payload;
     }
 
-    return;
+    return state;
 }
 
 
