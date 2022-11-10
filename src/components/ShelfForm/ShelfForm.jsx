@@ -25,6 +25,8 @@ function ShelfForm(){
             type: 'ADD_ITEM',
             payload: {description: description, image_url:url},
         });
+        setDescription('');
+        setUrl('');
     }
 
 
