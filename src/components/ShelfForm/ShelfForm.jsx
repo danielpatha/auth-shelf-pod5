@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function ShelfForm(){
 
+    //setup dispatch
+    const dispatch = useDispatch();
+
     //set local state for input fields
     const [description, setDescription] = useState('');
     const [url, setUrl] = useState('');
@@ -18,7 +21,10 @@ function ShelfForm(){
         evt.preventDefault();
         console.log('in postItem with two values:', description, url);
 
-        
+        dispatch({
+            type: 'ADD_ITEM',
+            payload: {description: description, image_url:url},
+        });
     }
 
 
