@@ -6,7 +6,21 @@ const router = express.Router();
  * Get all of the items on the shelf
  */
 router.get('/', (req, res) => {
-  res.sendStatus(200); // For testing only, can be removed
+   const sqlText = `
+   SELECT *
+   FROM "item"
+   ORDER BY "id" ASC;
+   `;
+
+   pool.query(sqlText)
+   .then((result) =>{
+    console.log('result is:',result.rows)
+    res.send(result.rows)
+   })
+   .catch((error) =>{
+    console.log('error fetching items', error)
+    res.sendStatus(500)
+   })
 });
 
 /**
@@ -14,13 +28,44 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // endpoint functionality
+  console.log("req.body is:",req.body)
+  const sqlText = `
+  INSERT INTO "item"
+  ("description","image_url","user_id")
+  VALUES
+  ($1,$2,$3)
+  `;
+
+  pool.query(sqlText,[req.body.description,req.body.image_url,req.user.id])
+
+  .then((result) =>{
+    console.log('result.rows is:', result.rows)
+    res.sendStatus(201)
+  })
+  .catch((error) =>{
+    console.log('error in /POST', error)
+  })
 });
+
 
 /**
  * Delete an item if it's something the logged in user added
  */
 router.delete('/:id', (req, res) => {
   // endpoint functionality
+  const sqlText = `
+  DELETE
+  FROM "item"
+  WHERE "id" = $1;
+  `;
+
+  pool.query(sqlText,[req.params.id])
+  .then((result) =>{
+    res.sendStatus(200)
+  })
+  .catch((error) =>{
+    console.log('error deleting item',error)
+  })
 });
 
 /**
