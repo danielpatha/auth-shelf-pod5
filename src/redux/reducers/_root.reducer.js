@@ -12,7 +12,8 @@ import shelfReducer from './shelf.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  shelfReducer, // gets the reducer from the shelf.reducer
+//   shelfReducer, 
+  // gets the reducer from the shelf.reducer
 });
 
 export default rootReducer;
