@@ -16,7 +16,7 @@ function ShelfPage() {
   return (
     
     <div className="container">
-      <h2>Shelf</h2>
+      <h1>Shelf</h1>
       <ShelfForm/>
       <ShelfList/>
       

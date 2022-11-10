@@ -32,9 +32,8 @@ function ShelfForm(){
 
     return (
         <>
-        <h1>Shelf Form</h1>
+        <h2>Shelf Form</h2>
         <form onSubmit={postItem}>
-            <h2> Add an Item </h2>
             <label htmlFor="description">
                 Description:
             <input

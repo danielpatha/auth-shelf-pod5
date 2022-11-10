@@ -8,7 +8,7 @@ const shelf = useSelector(store => store.shelfReducer);
 
     return (
         <main>
-        <h1>Shelf List</h1>
+        <h2>Shelf List</h2>
 
       <section>
         <ul>
