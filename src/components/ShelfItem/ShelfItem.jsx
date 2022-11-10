@@ -15,7 +15,7 @@ function ShelfItem({ item }) {
 
         dispatch({
             type: 'DELETE_ITEM',
-            payload: evt.target.name
+            payload: item
         });
 
 
